@@ -1,0 +1,16 @@
+<%= button_to "Logout", destroy_user_session_path, method: :delete  %>
+<%= link_to "Login", new_user_session_path %>
+
+<ul>
+  <% @post.each do |p| %>
+    <li>
+      <h5><%= p.title %></h5>
+      <p><%= p.body %></p>
+      <% if user_signed_in? %>
+        <p>By: <%= User.find_by(id: p.user_id).email %></p>
+      <% else %>
+        <p>Log in to see the author of this post!</p>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
